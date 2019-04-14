@@ -6,6 +6,7 @@
     <p>{{ post.content }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary">DO SOMETHING</button>
+    <button mat-flat-button color="accent" (click)="onModify()">MODIFY</button>
+    <button mat-flat-button color="warn" (click)="onDelete()">DELETE</button>
   </mat-card-actions>
 </mat-card>

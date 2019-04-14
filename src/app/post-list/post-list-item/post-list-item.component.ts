@@ -15,4 +15,12 @@ export class PostListItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  onModify() {
+    console.log(`Modify post ${this.post.title} (ID ${this.post.id})`);
+  }
+
+  onDelete() {
+    console.log(`Delete post ${this.post.title} (ID ${this.post.id})`);
+  }
+
 }
