@@ -56,4 +56,14 @@ export class PostsService {
       console.log('Access denied!');
     }
   }
+
+  addPost(title: string, content: string) {
+    console.log({
+      id: Date.now().toString(),
+      title,
+      content,
+      createdAt: new Date(),
+      user: this.auth.currentUser ? this.auth.currentUser : null
+    });
+  }
 }
