@@ -1,3 +1,7 @@
 <mat-toolbar color="primary">
   <h1>Maarch Training Part II</h1>
+  <div class="end-row">
+    <button mat-flat-button color="accent" *ngIf="!isAuth" (click)="onConnect()">CONNECT</button>
+    <p *ngIf="isAuth">Connected as {{ user.name }}</p>
+  </div>
 </mat-toolbar>
