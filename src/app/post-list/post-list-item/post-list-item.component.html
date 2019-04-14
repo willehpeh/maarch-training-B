@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title>{{ post.title }}</mat-card-title>
+  <span class="user-info">Created by {{ post.user.name }}</span>
+  <mat-card-subtitle>{{ post.createdAt | date:'HH:mm MMMM dd, yyyy' }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>{{ post.content }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary">DO SOMETHING</button>
+  </mat-card-actions>
+</mat-card>
