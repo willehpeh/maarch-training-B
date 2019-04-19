@@ -5,3 +5,13 @@ mat-toolbar {
 .end-row {
   margin-right: 20px;
 }
+
+.header-links a {
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+a.active {
+  color: yellow!important;
+}
