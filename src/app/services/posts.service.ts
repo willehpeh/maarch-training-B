@@ -42,11 +42,7 @@ export class PostsService {
   }];
 
   modifyPost(post: Post) {
-    if (this.auth.currentUser && post.user.name === this.auth.currentUser.name) {
-      console.log(`Modify post ${post.title} (ID ${post.id})`);
-    } else {
-      console.log('Access denied!');
-    }
+    this.posts[this.posts.findIndex(element => element.id === post.id)] = post;
   }
 
   deletePost(post: Post) {
@@ -66,5 +62,9 @@ export class PostsService {
       user: this.auth.currentUser ? this.auth.currentUser : null
     });
     console.log('Post added successfully!');
+  }
+
+  getPostById(id: string) {
+    return this.posts.find(post => post.id === id);
   }
 }
