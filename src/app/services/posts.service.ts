@@ -58,12 +58,13 @@ export class PostsService {
   }
 
   addPost(title: string, content: string) {
-    console.log({
-      id: Date.now().toString(),
+    this.posts.unshift({
+      id: 'somzemfoih' + Date.now().toString(),
       title,
       content,
       createdAt: new Date(),
       user: this.auth.currentUser ? this.auth.currentUser : null
     });
+    console.log('Post added successfully!');
   }
 }
