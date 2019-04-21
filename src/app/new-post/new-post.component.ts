@@ -6,6 +6,7 @@ import { minLengthValidator } from './min-length.validator';
 import { MyAsyncValidator } from './my-async.validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../models/Post';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-post',
@@ -40,6 +41,11 @@ export class NewPostComponent implements OnInit {
         content: [this.post.content, [Validators.required], [this.myAsync.validate]]
       });
     }
+
+    this.postForm.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged((a, b) => a.title === b.title && a.content === b.content)
+    ).subscribe(console.log);
   }
 
   onSubmit() {

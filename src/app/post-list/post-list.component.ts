@@ -18,9 +18,5 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.postsService.posts.slice();
-    this.interval$ = interval(1000);
-    this.interval$.pipe(
-      map(value => value * 2)
-    );
   }
 }
