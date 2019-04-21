@@ -31,7 +31,7 @@ export class NewPostComponent implements OnInit {
       this.mode = 'new';
       this.postForm = this.formBuilder.group({
         title: ['', [Validators.required, minLengthValidator(5)]],
-        content: ['', [Validators.required], [this.myAsync.validate]]
+        content: ['', [Validators.required]]
       });
     } else {
       this.mode = 'modify';
@@ -41,11 +41,6 @@ export class NewPostComponent implements OnInit {
         content: [this.post.content, [Validators.required], [this.myAsync.validate]]
       });
     }
-
-    this.postForm.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged((a, b) => a.title === b.title && a.content === b.content)
-    ).subscribe(console.log);
   }
 
   onSubmit() {

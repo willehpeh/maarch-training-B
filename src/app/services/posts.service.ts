@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post';
 import { AuthService } from './auth.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,19 @@ export class PostsService {
     }
   }];
 
+  posts$ = new BehaviorSubject<Post[]>(this.posts);
+
+  getPosts() {
+    return this.posts$.asObservable();
+  }
+
+  emitPosts() {
+    this.posts$.next(this.posts);
+  }
+
   modifyPost(post: Post) {
     this.posts[this.posts.findIndex(element => element.id === post.id)] = post;
+    this.emitPosts();
   }
 
   deletePost(post: Post) {
@@ -51,6 +63,7 @@ export class PostsService {
     } else {
       console.log('Access denied!');
     }
+    this.emitPosts();
   }
 
   addPost(title: string, content: string) {
@@ -62,6 +75,7 @@ export class PostsService {
       user: this.auth.currentUser ? this.auth.currentUser : null
     });
     console.log('Post added successfully!');
+    this.emitPosts();
   }
 
   getPostById(id: string) {
